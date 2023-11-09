@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Utility;
-
+import Utility.MyIterator;
 /**
  *
  * @author pltdu
@@ -89,7 +89,7 @@ public class MyArrayList<E> implements ListADT<E> {
     }
 
     @Override
-    public Iterator<E> iterator() {
+    public Utility.MyIterator<E> iterator() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'iterator'");
     }

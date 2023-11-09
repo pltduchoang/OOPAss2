@@ -1,5 +1,5 @@
 package Utility;
-import Utility.Iterator;
+import Utility.MyIterator;
 import java.io.Serializable;
 
 /**
@@ -222,5 +222,5 @@ public interface ListADT<E> extends Serializable
 	 * 			<code>linearUtilities.Iterator<E></code>,
 	 * 			not <code>java.util.Iterator</code>.
 	 */
-	public Utility.Iterator<E> iterator();	
+	public Utility.MyIterator<E> iterator();	
 }
