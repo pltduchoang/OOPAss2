@@ -8,22 +8,22 @@ package Utility;
  *
  * @author pltdu
  */
-public class Queue implements QueueADT {
+public class Queue<E> implements QueueADT<E> {
 
     @Override
-    public void enqueue(Object element) {
+    public void enqueue(E element) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'enqueue'");
     }
 
     @Override
-    public Object dequeue() {
+    public E dequeue() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'dequeue'");
     }
 
     @Override
-    public Object peek() {
+    public E peek() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'peek'");
     }

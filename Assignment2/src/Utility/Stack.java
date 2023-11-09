@@ -8,22 +8,22 @@ package Utility;
  *
  * @author pltdu
  */
-public class Stack implements StackADT {
+public class Stack<E> implements StackADT<E> {
 
     @Override
-    public void push(Object element) {
+    public void push(E element) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'push'");
     }
 
     @Override
-    public Object pop() {
+    public E pop() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'pop'");
     }
 
     @Override
-    public Object peek() {
+    public E peek() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'peek'");
     }
