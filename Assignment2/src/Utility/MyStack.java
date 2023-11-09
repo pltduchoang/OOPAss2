@@ -5,7 +5,7 @@
 package Utility;
 
 import java.util.EmptyStackException;
-import java.util.LinkedList;
+import Utility.MyArrayList;
 
 /**
  *
@@ -13,15 +13,18 @@ import java.util.LinkedList;
  */
 public class MyStack<E> implements StackADT<E> {
 
-    private LinkedList<E> list;
+    private MyArrayList<E> list;
+    private int size;
 
     public MyStack() {
-        list = new LinkedList<>();
+        list = new MyArrayList<>();
+        size = 0;
     }
 
     @Override
     public void push(E element) {
-        list.addLast(element);
+        list.add(element);
+        size++;
     }
 
     @Override
@@ -29,7 +32,9 @@ public class MyStack<E> implements StackADT<E> {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        return list.removeLast();
+        E remove = list.remove(list.size() - 1);
+        size--;
+        return remove;
     }
 
     @Override
@@ -37,7 +42,7 @@ public class MyStack<E> implements StackADT<E> {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        return list.getLast();
+        return list.get(size() - 1);
     }
 
     @Override
@@ -53,6 +58,7 @@ public class MyStack<E> implements StackADT<E> {
     @Override
     public void clear() {
         list.clear();
+        size = 0;
     }
 
 }
