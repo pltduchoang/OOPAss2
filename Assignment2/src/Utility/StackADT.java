@@ -30,6 +30,9 @@ public interface StackADT<E> {
     /**
      * Return the top element of the stack without removing it.
      *
+     * @precondition The stack is not empty.
+     * @postcondition The stack remains unchanged.
+     * @throws IllegalStateException if the stack is empty.
      * @return The top element of the stack.
      */
     E peek();
@@ -47,4 +50,13 @@ public interface StackADT<E> {
      * @return true if the stack is empty, false if at least one element.
      */
     boolean isEmpty();
+
+    /**
+     * Remove all elements from the stack.
+     * 
+     * @precondition The stack is not empty.
+     * @postcondition The stack is empty.
+     * @throws IllegalStateException if the stack is empty.
+     */
+    void clear();
 }
