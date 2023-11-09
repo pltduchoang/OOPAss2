@@ -8,6 +8,6 @@ package Utility;
  *
  * @author pltdu
  */
-public class Node {
+public class MyDLLNode {
     
 }

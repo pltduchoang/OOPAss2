@@ -8,6 +8,6 @@ package Utility;
  *
  * @author emagt
  */
-public interface Iterator {
+public interface Iterator<E> {
     
 }
