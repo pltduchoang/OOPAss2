@@ -8,6 +8,6 @@ package Utility;
  *
  * @author pltdu
  */
-public class ArrayList {
+public class MyArrayList {
     
 }

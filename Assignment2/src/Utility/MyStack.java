@@ -11,11 +11,11 @@ import java.util.LinkedList;
  *
  * @author Matt
  */
-public class Stack<E> implements StackADT<E> {
+public class MyStack<E> implements StackADT<E> {
 
     private LinkedList<E> list;
 
-    public Stack() {
+    public MyStack() {
         list = new LinkedList<>();
     }
 

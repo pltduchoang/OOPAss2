@@ -4,7 +4,7 @@
  */
 package assignment2;
 
-import Utility.Stack;
+import Utility.MyStack;
 
 /**
  *
@@ -17,7 +17,7 @@ public class AppDriver {
      */
     public static void main(String[] args) {
         // Test Stack
-        Stack<Integer> stack = new Stack<>();
+        MyStack<Integer> stack = new MyStack<>();
         stack.push(10);
         System.out.println(stack.peek());
         stack.push(20);

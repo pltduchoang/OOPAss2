@@ -8,7 +8,7 @@ package Utility;
  *
  * @author pltdu
  */
-public class Queue<E> implements QueueADT<E> {
+public class MyQueue<E> implements QueueADT<E> {
 
     @Override
     public void enqueue(E element) {
