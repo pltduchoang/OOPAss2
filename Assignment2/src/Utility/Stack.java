@@ -4,40 +4,55 @@
  */
 package Utility;
 
+import java.util.EmptyStackException;
+import java.util.LinkedList;
+
 /**
  *
- * @author pltdu
+ * @author Matt
  */
 public class Stack<E> implements StackADT<E> {
 
+    private LinkedList<E> list;
+
+    public Stack() {
+        list = new LinkedList<>();
+    }
+
     @Override
     public void push(E element) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'push'");
+        list.addLast(element);
     }
 
     @Override
     public E pop() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'pop'");
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return list.removeLast();
     }
 
     @Override
     public E peek() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'peek'");
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return list.getLast();
     }
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'size'");
+        return list.size();
     }
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isEmpty'");
+        return list.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        list.clear();
     }
 
 }

@@ -4,6 +4,8 @@
  */
 package assignment2;
 
+import Utility.Stack;
+
 /**
  *
  * @author pltdu
@@ -14,7 +16,12 @@ public class AppDriver {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // Test Stack
+        Stack<Integer> stack = new Stack<>();
+        stack.push(10);
+        System.out.println(stack.peek());
+        stack.push(20);
+        System.out.println(stack.peek());
     }
 
 }
