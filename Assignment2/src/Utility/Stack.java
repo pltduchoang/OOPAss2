@@ -8,6 +8,36 @@ package Utility;
  *
  * @author pltdu
  */
-public class Stack {
-    
+public class Stack implements StackADT {
+
+    @Override
+    public void push(Object element) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'push'");
+    }
+
+    @Override
+    public Object pop() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'pop'");
+    }
+
+    @Override
+    public Object peek() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'peek'");
+    }
+
+    @Override
+    public int size() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'size'");
+    }
+
+    @Override
+    public boolean isEmpty() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isEmpty'");
+    }
+
 }
