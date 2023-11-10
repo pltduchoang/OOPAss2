@@ -28,7 +28,8 @@ public interface StackADT<E> {
      * @precondition The stack is not empty.
      * @postcondition The element at the top of the stack is removed.
      * @return The element popped off the top of the stack.
-     * @throws EmptyStackException if the stack is empty.
+     * @throws EmptyStackException  if the stack is empty.
+     * @throws InvalidTypeException if the element is not of the correct type.
      */
     E pop();
 

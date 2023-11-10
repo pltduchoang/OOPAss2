@@ -18,7 +18,8 @@ public interface QueueADT<E> {
      *
      * @param element The element to be enqueued (added).
      * @postcondition The new element is at the back of the queue.
-     * @throws FullQueueException if the queue is full.
+     * @throws FullQueueException   if the queue is full.
+     * @throws InvalidTypeException if the element is not of the correct type.
      */
     void enqueue(E element);
 
@@ -52,7 +53,7 @@ public interface QueueADT<E> {
     /**
      * Check if the queue is empty.
      *
-     * @return true if the queue is empty, false if at least one element.
+     * @return true if the queue is empty, false if it has at least one element.
      */
     boolean isEmpty();
 
