@@ -40,4 +40,10 @@ public class MyQueue<E> implements QueueADT<E> {
         throw new UnsupportedOperationException("Unimplemented method 'isEmpty'");
     }
 
+    @Override
+    public void clear() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'clear'");
+    }
+
 }
