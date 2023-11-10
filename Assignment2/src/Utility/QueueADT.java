@@ -18,6 +18,7 @@ public interface QueueADT<E> {
      *
      * @param element The element to be enqueued (added).
      * @postcondition The new element is at the back of the queue.
+     * @throws FullQueueException if the queue is full.
      */
     void enqueue(E element);
 
@@ -28,7 +29,7 @@ public interface QueueADT<E> {
      * @precondition The queue is not empty.
      * @postcondition The element at the front of the queue is removed.
      * @return the element that was removed from the front of he queue.
-     * @throws IllegalStateException if the queue is empty.
+     * @throws EmptyQueueException if the queue is empty.
      */
     E dequeue();
 
@@ -37,7 +38,7 @@ public interface QueueADT<E> {
      *
      * @precondition The stack is not empty.
      * @return The front (bottom) element of the stack.
-     * @throws IllegalStateException if the stack is empty.
+     * @throws EmptyQueueException if the stack is empty.
      */
     E peek();
 
@@ -60,7 +61,7 @@ public interface QueueADT<E> {
      * 
      * @precondition The queue is not empty.
      * @postcondition The queue is empty.
-     * @throws IllegalStateException if the queue is empty.
+     * @throws EmptyQueueException if the queue is empty.
      */
     void clear();
 }

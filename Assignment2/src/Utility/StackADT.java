@@ -18,6 +18,7 @@ public interface StackADT<E> {
      * 
      * @param element The element to be pushed onto the stack.
      * @postcondition The new element is at the top of the stack.
+     * @throws FullStackException if the stack is full.
      */
     void push(E element);
 
@@ -27,7 +28,7 @@ public interface StackADT<E> {
      * @precondition The stack is not empty.
      * @postcondition The element at the top of the stack is removed.
      * @return The element popped off the top of the stack.
-     * @throws IllegalStateException if the stack is empty.
+     * @throws EmptyStackException if the stack is empty.
      */
     E pop();
 
@@ -36,7 +37,7 @@ public interface StackADT<E> {
      *
      * @precondition The stack is not empty.
      * @return The top element of the stack.
-     * @throws IllegalStateException if the stack is empty.
+     * @throws EmptyStackException if the stack is empty.
      */
     E peek();
 
@@ -59,7 +60,7 @@ public interface StackADT<E> {
      * 
      * @precondition The stack is not empty.
      * @postcondition The stack is empty.
-     * @throws IllegalStateException if the stack is empty.
+     * @throws EmptyStackException if the stack is empty.
      */
     void clear();
 }
