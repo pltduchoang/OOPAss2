@@ -4,11 +4,13 @@
  */
 package Utility;
 
+import java.util.EmptyStackException;
+
 /**
  * A Stack Abstract Data Type to be implemented by data structures including:
  * Doubly Linked List and Array List.
  *
- * @author Group 2
+ * @authors Group 2: Duc Hoang, Sean Lam, Edward Magtoto, Matt Yackel
  * 
  * @param <E> The type of elements stored in the stack.
  */
