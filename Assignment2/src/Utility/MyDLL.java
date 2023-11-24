@@ -238,7 +238,7 @@ public class MyDLL<E> implements ListADT<E> {
     }
 
     // Helper method to add a node to the end of the list
-    private void addLast(Node<E> newNode) {
+    public void addLast(Node<E> newNode) {
         if (tail == null) {
             // List is empty
             head = tail = newNode;
