@@ -4,117 +4,274 @@
  */
 package Utility;
 
+
+import java.util.NoSuchElementException;
+
 /**
  * This class represents a node in a doubly linked list.
  * 
  * @param <E> the type of the data stored in the node
  */
-public class MyDLL {
-    private int size; 
-    private MyDLLNode head;
-    private MyDLLNode tail;
+public class MyDLL<E> implements ListADT<E> {
+    private Node<E> head;
+    private Node<E> tail;
+    private int size;
 
-    /**
-     * Constructs a new node with the given data.
-     * 
-     * @param data the data to be stored in the node
-     */
     public MyDLL() {
-        head = tail = null;
-        size = 0;
-        
-    }
-    
-    /**
-     * Gets the data stored in the node.
-     * 
-     * @return the data in the node
-     */
-    public void add(MyDLLNode node)
-    {
-       if(isEmpty())
-       {
-           head = tail = node;
-       }
-       else
-       {
-           tail.setNext(node);
-           node.setPrev(tail);
-           tail = node;
-       }
-       size++;
-    }
-    
-    /**
-     * Sets the data in the node.
-     * 
-     * @param data the data to be set
-     */
-    public MyDLLNode getHead() {
-        return head;
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
     }
 
-    /**
-     * Gets the previous node in the linked list.
-     * 
-     * @return the previous node
-     */
-    public void setHead(MyDLLNode head) {
-        this.head = head;
-    }
-
-    /**
-     * Gets the next node in the linked list.
-     * 
-     * @return the next node
-     */
-    public MyDLLNode getTail() {
-        return tail;
-    }
-
-    /**
-     * Sets the next node in the linked list.
-     * 
-     * @param next the next node
-     */
-    public void setTail(MyDLLNode tail) {
-        this.tail = tail;
-    }
-
-    /**
-     * Gets the size of the list.
-     * 
-     * @return the size of the list
-     */
-    public int getSize() {
+    @Override
+    public int size() {
         return size;
     }
-    
-    /**
-     * Sets the size of the list.
-     * 
-     * @param size the size of the list
-     */
-    public boolean isEmpty()
-    {
-        return head == null;
+
+    @Override
+    public void clear() {
+        head = tail = null;
+        size = 0;
     }
 
-    /**
-     * Returns a string representation of the node.
-     * 
-     * @return a string representation of the node
-     */
     @Override
-    public String toString() {
-        String info= "";
-        MyDLLNode node = head;
-        for (int i=0;i<size;i++)
-        {
-            info += node.toString()+'\n';
-            node = node.getNext();
+    public boolean add(int index, E toAdd) throws NullPointerException, IndexOutOfBoundsException {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Index is out of bounds");
         }
-            
-        return info;
+
+        Node<E> newNode = new Node<>(toAdd);
+
+        if (index == 0) {
+            addFirst(newNode);
+        } else if (index == size) {
+            addLast(newNode);
+        } else {
+            Node<E> current = getNode(index);
+            Node<E> previous = current.getPrev();
+
+            previous.setNext(newNode);
+            newNode.setPrev(previous);
+
+            newNode.setNext(current);
+            current.setPrev(newNode);
+
+            size++;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean add(E toAdd) throws NullPointerException {
+        Node<E> newNode = new Node<>(toAdd);
+        addLast(newNode);
+        return true;
+    }
+
+    @Override
+    public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException {
+        E[] elements = (E[]) toAdd.toArray();
+
+        for (E element : elements) {
+            addLast(new Node<>(element));
+        }
+        return true;
+    }
+
+    @Override
+    public E get(int index) throws IndexOutOfBoundsException {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index is out of bounds");
+        }
+        return getNode(index).getData();
+    }
+
+    @Override
+    public E remove(int index) throws IndexOutOfBoundsException {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index is out of bounds");
+        }
+
+        Node<E> current = getNode(index);
+        Node<E> previous = current.getPrev();
+        Node<E> next = current.getNext();
+
+        if (previous == null) {
+            // Removing the head
+            head = next;
+        } else {
+            previous.setNext(next);
+            current.setPrev(null);
+        }
+
+        if (next == null) {
+            // Removing the tail
+            tail = previous;
+        } else {
+            next.setPrev(previous);
+            current.setNext(null);
+        }
+
+        size--;
+
+        return current.getData();
+    }
+
+    @Override
+    public E remove(E toRemove) throws NullPointerException {
+        Node<E> current = head;
+
+        while (current != null) {
+            if (toRemove.equals(current.getData())) {
+                Node<E> previous = current.getPrev();
+                Node<E> next = current.getNext();
+
+                if (previous == null) {
+                    // Removing the head
+                    head = next;
+                } else {
+                    previous.setNext(next);
+                    current.setPrev(null);
+                }
+
+                if (next == null) {
+                    // Removing the tail
+                    tail = previous;
+                } else {
+                    next.setPrev(previous);
+                    current.setNext(null);
+                }
+
+                size--;
+
+                return current.getData();
+            }
+
+            current = current.getNext();
+        }
+
+        return null; // Element not found
+    }
+
+    @Override
+    public E set(int index, E toChange) throws NullPointerException, IndexOutOfBoundsException {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index is out of bounds");
+        }
+
+        Node<E> current = getNode(index);
+        E oldData = current.getData();
+        current.setData(toChange);
+
+        return oldData;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    @Override
+    public boolean contains(E toFind) throws NullPointerException {
+        Node<E> current = head;
+
+        while (current != null) {
+            if (toFind.equals(current.getData())) {
+                return true;
+            }
+            current = current.getNext();
+        }
+
+        return false;
+    }
+
+    @Override
+    public E[] toArray(E[] toHold) throws NullPointerException {
+        if (toHold.length < size) {
+            // If the array is not big enough, create a new one of the correct size
+            toHold = (E[]) new Object[size];
+        }
+
+        int index = 0;
+        Node<E> current = head;
+
+        while (current != null) {
+            toHold[index++] = current.getData();
+            current = current.getNext();
+        }
+
+        return toHold;
+    }
+
+    @Override
+    public Object[] toArray() {
+        Object[] array = new Object[size];
+        int index = 0;
+        Node<E> current = head;
+
+        while (current != null) {
+            array[index++] = current.getData();
+            current = current.getNext();
+        }
+
+        return array;
+    }
+
+    @Override
+    public MyIterator<E> iterator() {
+        return new MyIterator<E>(this);
+    }
+
+    // Helper method to add a node to the front of the list
+    private void addFirst(Node<E> newNode) {
+        if (head == null) {
+            // List is empty
+            head = tail = newNode;
+        } else {
+            newNode.setNext(head);
+            head.setPrev(newNode);
+            head = newNode;
+        }
+
+        size++;
+    }
+
+    // Helper method to add a node to the end of the list
+    private void addLast(Node<E> newNode) {
+        if (tail == null) {
+            // List is empty
+            head = tail = newNode;
+        } else {
+            newNode.setPrev(tail);
+            tail.setNext(newNode);
+            tail = newNode;
+        }
+
+        size++;
+    }
+
+    // Helper method to get the node at a specific index
+    private Node<E> getNode(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index is out of bounds");
+        }
+
+        Node<E> current;
+        if (index < size / 2) {
+            // Start from the head and move forward
+            current = head;
+            for (int i = 0; i < index; i++) {
+                current = current.getNext();
+            }
+        } else {
+            // Start from the tail and move backward
+            current = tail;
+            for (int i = size - 1; i > index; i--) {
+                current = current.getPrev();
+            }
+        }
+
+        return current;
     }
 }

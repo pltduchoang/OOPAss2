@@ -222,5 +222,5 @@ public interface ListADT<E> extends Serializable
 	 * 			<code>linearUtilities.Iterator<E></code>,
 	 * 			not <code>java.util.Iterator</code>.
 	 */
-	public Utility.MyIterator<E> iterator();	
+	public MyIterator<E> iterator();	
 }
