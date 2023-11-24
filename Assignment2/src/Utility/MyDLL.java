@@ -224,7 +224,7 @@ public class MyDLL<E> implements ListADT<E> {
     }
 
     // Helper method to add a node to the front of the list
-    private void addFirst(Node<E> newNode) {
+    public void addFirst(Node<E> newNode) {
         if (head == null) {
             // List is empty
             head = tail = newNode;
@@ -252,7 +252,7 @@ public class MyDLL<E> implements ListADT<E> {
     }
 
     // Helper method to get the node at a specific index
-    private Node<E> getNode(int index) {
+    public Node<E> getNode(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index is out of bounds");
         }
