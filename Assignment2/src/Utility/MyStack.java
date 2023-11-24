@@ -106,7 +106,7 @@ public class MyStack<E> implements StackADT<E> {
     }
 
     @Override
-    public Utility.Iterator<E> iterator() {
+    public Utility.IteratorADT<E> iterator() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'iterator'");
     }

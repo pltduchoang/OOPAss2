@@ -47,7 +47,7 @@ public class MyQueue<E> implements QueueADT<E> {
     }
 
     @Override
-    public Iterator<E> iterator() {
+    public IteratorADT<E> iterator() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'iterator'");
     }

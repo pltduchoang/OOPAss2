@@ -64,7 +64,7 @@ public interface QueueADT<E> extends Serializable {
      * 
      * @return an iterator over the elements in this queue in proper sequence.
      */
-    public Iterator<E> iterator();
+    public IteratorADT<E> iterator();
 
     /**
      * Used to compare two Queue ADT's. To be equal two queues must contain
