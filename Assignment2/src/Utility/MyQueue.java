@@ -4,11 +4,28 @@
  */
 package Utility;
 
+import java.util.NoSuchElementException;
+
 /**
  *
  * @author pltdu
  */
-public class MyQueue<E> implements QueueADT<E> {
+
+
+import Utility.MyDLL;
+
+public class MyQueue<E> implements QueueADT<E>, IteratorADT<E> {
+
+    private MyDLL<E> queue;
+    private int capacity;
+    private Node<E> iteratorNode;
+
+    public MyQueue(int capacity) {
+        queue = new MyDLL<>(capacity);
+        this.capacity = capacity;
+        iteratorNode = null;
+    }
+
 
     @Override
     public void enqueue(E element) {
@@ -74,5 +91,17 @@ public class MyQueue<E> implements QueueADT<E> {
     public boolean isFull() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'isFull'");
+    }
+
+    @Override
+    public boolean hasNext() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public E next() throws NoSuchElementException {
+        // TODO Auto-generated method stub
+        return null;
     }
 }
