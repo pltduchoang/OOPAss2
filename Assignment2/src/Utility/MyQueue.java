@@ -17,27 +17,31 @@ import Utility.MyDLL;
 public class MyQueue<E> implements QueueADT<E>, IteratorADT<E> {
 
     private MyDLL<E> queue;
-    private int capacity;
+    private int size;
     private Node<E> iteratorNode;
 
-    public MyQueue(int capacity) {
-        queue = new MyDLL<>(capacity);
-        this.capacity = capacity;
+    public MyQueue() {
+        queue = new MyDLL<>();
+        size = 0;
         iteratorNode = null;
     }
 
 
     @Override
     public void enqueue(E element) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'enqueue'");
+        Node<E> newNode = new Node<>(element);
+        queue.addLast(newNode);
     }
+
+
 
     @Override
     public E dequeue() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'dequeue'");
     }
+
+
 
     @Override
     public E peek() {
