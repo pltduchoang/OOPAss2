@@ -121,7 +121,7 @@ public interface StackADT<E> extends Serializable {
      * 
      * @return an iterator over the elements in this stack in proper sequence.
      */
-    public Iterator<E> iterator();
+    public IteratorADT<E> iterator();
 
     /**
      * Used to compare two Stack ADT's. To be equal two stacks must contain
