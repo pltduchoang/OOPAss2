@@ -6,6 +6,7 @@ package Utility;
 
 import java.util.EmptyStackException;
 //import Utility.MyArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -14,11 +15,21 @@ import java.util.EmptyStackException;
 public class MyStack<E> implements StackADT<E> {
 
     private MyArrayList<E> list;
+    private int capacity;
     private int size;
 
     public MyStack() {
         list = new MyArrayList<>();
         size = 0;
+        capacity = 10;
+    }
+
+    public MyStack(int capacity) {
+        this.capacity = capacity;
+        size = 0;
+        // list = (E[]) (new MyStack<>(capacity));
+        // list = new MyArrayList<>(capacity);
+        // need to implement constructor that takes int
     }
 
     @Override
@@ -35,6 +46,9 @@ public class MyStack<E> implements StackADT<E> {
         E remove = list.remove(list.size() - 1);
         size--;
         return remove;
+
+        // size--;
+        // return list[size];
     }
 
     @Override
@@ -52,13 +66,49 @@ public class MyStack<E> implements StackADT<E> {
 
     @Override
     public boolean isEmpty() {
-        return list.isEmpty();
+        return size == 0;
     }
 
     @Override
     public void clear() {
         list.clear();
         size = 0;
+    }
+
+    @Override
+    public Object[] toArray() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'toArray'");
+    }
+
+    @Override
+    public E[] toArray(E[] holder) throws NullPointerException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'toArray'");
+    }
+
+    @Override
+    public boolean contains(E toFind) throws NullPointerException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'contains'");
+    }
+
+    @Override
+    public int search(E toFind) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'search'");
+    }
+
+    @Override
+    public boolean equals(StackADT<E> that) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'equals'");
+    }
+
+    @Override
+    public Utility.Iterator<E> iterator() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'iterator'");
     }
 
 }

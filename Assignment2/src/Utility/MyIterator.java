@@ -1,7 +1,8 @@
 package Utility;
+
 import java.util.NoSuchElementException;
 
-public class MyIterator<E> implements Iterator<E>{
+public class MyIterator<E> implements Iterator<E> {
     private E[] elements;
     private int currentPosition;
 

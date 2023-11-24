@@ -16,22 +16,22 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author emagt
  */
 public class MyDLLTest {
-    
+
     public MyDLLTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
@@ -147,5 +147,4 @@ public class MyDLLTest {
         assertEquals(expected, dll.toString());
     }
 
-    
 }
