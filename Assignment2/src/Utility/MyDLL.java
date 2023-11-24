@@ -17,8 +17,10 @@ public class MyDLL<E> implements ListADT<E> {
     private Node<E> tail;
     private int size;
 
+    public MyDLL() {
         this.head = null;
         this.tail = null;
+        this.size = 0;
     }
 
     @Override
@@ -236,6 +238,7 @@ public class MyDLL<E> implements ListADT<E> {
     }
 
     // Helper method to add a node to the end of the list
+    private void addLast(Node<E> newNode) {
         if (tail == null) {
             // List is empty
             head = tail = newNode;
