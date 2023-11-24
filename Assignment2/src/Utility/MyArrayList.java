@@ -73,7 +73,7 @@ public class MyArrayList<E> implements ListADT<E> {
     public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException {
         MyIterator<E> iterator = new MyIterator<E>(toAdd);
         while (iterator.hasNext()) {
-            add(iterator.next().get());
+            add(iterator.next());
         }
     }
 
@@ -118,8 +118,16 @@ public class MyArrayList<E> implements ListADT<E> {
 
     @Override
     public E set(int index, E toChange) throws NullPointerException, IndexOutOfBoundsException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'set'");
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index out of bounds.");
+        }
+        if (toChange == null) {
+            throw new NullPointerException("Cannot change to null element.");
+        }
+        // Save the old element for the return
+        E old = get(index);
+        array[index] = toChange;
+        return old;
     }
 
     @Override
