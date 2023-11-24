@@ -12,18 +12,13 @@ import java.util.NoSuchElementException;
  */
 
 
-import Utility.MyDLL;
 
 public class MyQueue<E> implements QueueADT<E>, IteratorADT<E> {
 
     private MyDLL<E> queue;
-    private int size;
-    private Node<E> iteratorNode;
 
-    public MyQueue() {
-        queue = new MyDLL<>();
-        size = 0;
-        iteratorNode = null;
+    public MyQueue(int capacity) {
+        queue = new MyDLL<>(capacity);
     }
 
 
@@ -33,79 +28,96 @@ public class MyQueue<E> implements QueueADT<E>, IteratorADT<E> {
         queue.addLast(newNode);
     }
 
-
-
     @Override
     public E dequeue() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dequeue'");
+        if (isEmpty()) {
+            throw new NoSuchElementException("Queue is empty");
+        }
+        return(queue.remove(0));
     }
-
 
 
     @Override
     public E peek() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'peek'");
+        if (isEmpty()) {
+            throw new NoSuchElementException("Queue is empty");
+        }
+        return queue.get(0);
     }
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'size'");
+        return queue.size();
     }
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isEmpty'");
+        return queue.isEmpty();
     }
 
     @Override
     public void dequeueAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dequeueAll'");
+        queue.clear();
     }
 
-    @Override
-    public IteratorADT<E> iterator() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'iterator'");
-    }
+  
 
     @Override
     public boolean equals(QueueADT<E> that) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'equals'");
+        if (that == null) {
+            return false;
+        }
+    
+        if (this.size() != that.size()) {
+            return false;
+        }
+    
+        IteratorADT<E> thisIterator = this.iterator();
+        IteratorADT<E> thatIterator = that.iterator();
+    
+        while (thisIterator.hasNext() && thatIterator.hasNext()) {
+            E thisElement = thisIterator.next();
+            E thatElement = thatIterator.next();
+    
+            if (!thisElement.equals(thatElement)) {
+                return false;
+            }
+        }
+    
+        return true;
     }
 
+    
     @Override
     public Object[] toArray() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'toArray'");
+        return queue.toArray();
     }
 
     @Override
     public E[] toArray(E[] holder) throws NullPointerException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'toArray'");
+        return queue.toArray(holder);
     }
 
     @Override
     public boolean isFull() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isFull'");
+        return queue.size() == queue.getCapacity();
     }
+
+
+    @Override
+    public IteratorADT<E> iterator() {
+        return new MyIterator<>(this.queue);
+    }
+
 
     @Override
     public boolean hasNext() {
-        // TODO Auto-generated method stub
-        return false;
+        return iterator().hasNext();
     }
+
 
     @Override
     public E next() throws NoSuchElementException {
-        // TODO Auto-generated method stub
-        return null;
+        return iterator().next();
     }
 }

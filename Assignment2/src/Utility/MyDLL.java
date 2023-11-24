@@ -16,11 +16,17 @@ public class MyDLL<E> implements ListADT<E> {
     private Node<E> head;
     private Node<E> tail;
     private int size;
+    private int capacity;
 
-    public MyDLL() {
+    public MyDLL(int capacity) {
         this.head = null;
         this.tail = null;
         this.size = 0;
+        this.capacity = capacity;
+    }
+
+    public int getCapacity() {
+        return capacity;
     }
 
     @Override
@@ -36,6 +42,8 @@ public class MyDLL<E> implements ListADT<E> {
 
     @Override
     public boolean add(int index, E toAdd) throws NullPointerException, IndexOutOfBoundsException {
+        
+
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Index is out of bounds");
         }
@@ -64,6 +72,10 @@ public class MyDLL<E> implements ListADT<E> {
 
     @Override
     public boolean add(E toAdd) throws NullPointerException {
+        if (size >= capacity) {
+            throw new IllegalStateException("Cannot add more elements. The list is at its capacity.");
+        }
+
         Node<E> newNode = new Node<>(toAdd);
         addLast(newNode);
         return true;
