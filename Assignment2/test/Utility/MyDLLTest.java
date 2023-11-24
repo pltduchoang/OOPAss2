@@ -17,134 +17,202 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class MyDLLTest {
 
-    public MyDLLTest() {
-    }
-
-    @BeforeAll
-    public static void setUpClass() {
-    }
-
-    @AfterAll
-    public static void tearDownClass() {
-    }
+    private MyDLL<Integer> myDLL;
 
     @BeforeEach
-    public void setUp() {
-    }
-
-    @AfterEach
-    public void tearDown() {
-    }
-
-    /**
-     * Test of add method, of class MyDLL.
-     */
-    @Test
-    public void testAdd() {
-        MyDLL dll = new MyDLL();
-
-        assertTrue(dll.isEmpty());
-        assertEquals(0, dll.getSize());
-
-        MyDLLNode node1 = new MyDLLNode(1);
-        dll.add(node1);
-
-        assertFalse(dll.isEmpty());
-        assertEquals(1, dll.getSize());
-        assertEquals(node1, dll.getHead());
-        assertEquals(node1, dll.getTail());
-
-        MyDLLNode node2 = new MyDLLNode(2);
-        dll.add(node2);
-
-        assertFalse(dll.isEmpty());
-        assertEquals(2, dll.getSize());
-        assertEquals(node1, node2.getPrev());
-        assertEquals(node2, node1.getNext());
-        assertEquals(node2, dll.getTail());
+    void setUp() {
+        myDLL = new MyDLL<>();
     }
 
     @Test
-    public void testGetHead() {
-        MyDLL dll = new MyDLL();
-        MyDLLNode node1 = new MyDLLNode(1);
-
-        dll.add(node1);
-
-        assertEquals(node1, dll.getHead());
+    void testSize() {
+        assertEquals(0, myDLL.size());
+        myDLL.add(5);
+        assertEquals(1, myDLL.size());
+        myDLL.add(10);
+        myDLL.add(15);
+        assertEquals(3, myDLL.size());
     }
 
     @Test
-    public void testSetHead() {
-        MyDLL dll = new MyDLL();
-        MyDLLNode node1 = new MyDLLNode(1);
-        MyDLLNode node2 = new MyDLLNode(2);
-
-        dll.add(node1);
-        dll.setHead(node2);
-
-        assertEquals(node2, dll.getHead());
+    void testClear() {
+        myDLL.add(5);
+        myDLL.add(10);
+        myDLL.add(15);
+        myDLL.clear();
+        assertEquals(0, myDLL.size());
+        assertTrue(myDLL.isEmpty());
     }
 
     @Test
-    public void testGetTail() {
-        MyDLL dll = new MyDLL();
-        MyDLLNode node1 = new MyDLLNode(1);
+    void testAddAtIndex() {
+        myDLL.add(0, 5);
+        assertEquals(1, myDLL.size());
+        assertEquals(5, myDLL.get(0));
 
-        dll.add(node1);
+        myDLL.add(0, 10);
+        assertEquals(2, myDLL.size());
+        assertEquals(10, myDLL.get(0));
+        assertEquals(5, myDLL.get(1));
 
-        assertEquals(node1, dll.getTail());
+        myDLL.add(1, 15);
+        assertEquals(3, myDLL.size());
+        assertEquals(10, myDLL.get(0));
+        assertEquals(15, myDLL.get(1));
+        assertEquals(5, myDLL.get(2));
     }
 
     @Test
-    public void testSetTail() {
-        MyDLL dll = new MyDLL();
-        MyDLLNode node1 = new MyDLLNode(1);
-        MyDLLNode node2 = new MyDLLNode(2);
-
-        dll.add(node1);
-        dll.setTail(node2);
-
-        assertEquals(node2, dll.getTail());
+    void testAddAtIndexOutOfBounds() {
+        assertThrows(IndexOutOfBoundsException.class, () -> myDLL.add(1, 5));
+        assertThrows(IndexOutOfBoundsException.class, () -> myDLL.add(-1, 10));
     }
 
     @Test
-    public void testGetSize() {
-        MyDLL dll = new MyDLL();
-        MyDLLNode node1 = new MyDLLNode(1);
-        MyDLLNode node2 = new MyDLLNode(2);
+    void testAdd() {
+        myDLL.add(5);
+        assertEquals(1, myDLL.size());
+        assertEquals(5, myDLL.get(0));
 
-        assertEquals(0, dll.getSize());
-
-        dll.add(node1);
-        assertEquals(1, dll.getSize());
-
-        dll.add(node2);
-        assertEquals(2, dll.getSize());
+        myDLL.add(10);
+        assertEquals(2, myDLL.size());
+        assertEquals(10, myDLL.get(1));
     }
 
     @Test
-    public void testIsEmpty() {
-        MyDLL dll = new MyDLL();
-        assertTrue(dll.isEmpty());
+    void testAddAll() {
+        MyDLL<Integer> otherList = new MyDLL<>();
+        otherList.add(5);
+        otherList.add(10);
 
-        MyDLLNode node1 = new MyDLLNode(1);
-        dll.add(node1);
+        myDLL.addAll(otherList);
 
-        assertFalse(dll.isEmpty());
+        assertEquals(2, myDLL.size());
+        assertEquals(5, myDLL.get(0));
+        assertEquals(10, myDLL.get(1));
     }
 
     @Test
-    public void testToString() {
-        MyDLL dll = new MyDLL();
-        MyDLLNode node1 = new MyDLLNode(1);
-        MyDLLNode node2 = new MyDLLNode(2);
+    void testGet() {
+        myDLL.add(5);
+        myDLL.add(10);
 
-        dll.add(node1);
-        dll.add(node2);
+        assertEquals(5, myDLL.get(0));
+        assertEquals(10, myDLL.get(1));
+    }
 
-        String expected = "1\n2\n";
-        assertEquals(expected, dll.toString());
+    @Test
+    void testGetOutOfBounds() {
+        assertThrows(IndexOutOfBoundsException.class, () -> myDLL.get(0));
+    }
+
+    @Test
+    void testRemoveAtIndex() {
+        myDLL.add(5);
+        myDLL.add(10);
+
+        assertEquals(5, myDLL.remove(0));
+        assertEquals(1, myDLL.size());
+        assertEquals(10, myDLL.get(0));
+    }
+
+    @Test
+    void testRemoveElement() {
+        myDLL.add(5);
+        myDLL.add(10);
+
+        assertEquals(10, myDLL.remove(Integer.valueOf(10)));
+        assertEquals(1, myDLL.size());
+        assertEquals(5, myDLL.get(0));
+    }
+
+    @Test
+    void testRemoveNotFound() {
+        myDLL.add(5);
+        myDLL.add(10);
+
+        assertNull(myDLL.remove(Integer.valueOf(15)));
+        assertEquals(2, myDLL.size());
+    }
+
+    @Test
+    void testSet() {
+        myDLL.add(5);
+        myDLL.add(10);
+
+        assertEquals(5, myDLL.set(0, 15));
+        assertEquals(15, myDLL.get(0));
+    }
+
+    @Test
+    void testSetOutOfBounds() {
+        assertThrows(IndexOutOfBoundsException.class, () -> myDLL.set(0, 5));
+    }
+
+    @Test
+    void testIsEmpty() {
+        assertTrue(myDLL.isEmpty());
+        myDLL.add(5);
+        assertFalse(myDLL.isEmpty());
+    }
+
+    @Test
+    void testContains() {
+        myDLL.add(5);
+        myDLL.add(10);
+
+        assertTrue(myDLL.contains(5));
+        assertFalse(myDLL.contains(15));
+    }
+
+    @Test
+    void testToArray() {
+        myDLL.add(5);
+        myDLL.add(10);
+
+        Integer[] array = new Integer[2];
+        myDLL.toArray(array);
+
+        assertArrayEquals(new Integer[]{5, 10}, array);
+    }
+
+    @Test
+    void testToArrayResize() {
+        myDLL.add(5);
+        myDLL.add(10);
+
+        Integer[] array = new Integer[1];
+        myDLL.toArray(array);
+
+        assertArrayEquals(new Integer[]{5}, array);
+    }
+
+    @Test
+    void testToArrayNoResize() {
+        myDLL.add(5);
+        myDLL.add(10);
+
+        Object[] array = myDLL.toArray();
+
+        assertArrayEquals(new Object[]{5, 10}, array);
+    }
+
+    @Test
+    void testIterator() {
+        myDLL.add(5);
+        myDLL.add(10);
+        myDLL.add(15);
+
+        MyIterator<Integer> iterator = myDLL.iterator();
+        assertTrue(iterator.hasNext());
+        assertEquals(5, iterator.next());
+        assertTrue(iterator.hasNext());
+        assertEquals(10, iterator.next());
+        assertTrue(iterator.hasNext());
+        assertEquals(15, iterator.next());
+        assertFalse(iterator.hasNext());
+        
+        
     }
 
 }
