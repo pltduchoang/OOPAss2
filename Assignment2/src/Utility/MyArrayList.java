@@ -3,59 +3,117 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Utility;
+
 //import Utility.MyIterator;
 /**
  *
- * @author pltdu
+ * @author Matt
  */
 public class MyArrayList<E> implements ListADT<E> {
+    private static final int defaultCapacity = 10;
+    private int size;
+    private Object[] array;
+
+    public MyArrayList() {
+        array = new Object[defaultCapacity];
+        size = 0;
+    }
+
+    public MyArrayList(int capacity) {
+        array = new Object[capacity];
+        this.size = 0;
+
+    }
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'size'");
+        return size;
     }
 
     @Override
     public void clear() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'clear'");
+        array = new Object[defaultCapacity];
+        size = 0;
     }
 
     @Override
     public boolean add(int index, E toAdd) throws NullPointerException, IndexOutOfBoundsException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Index out of bounds.");
+        }
+        if (toAdd == null || toAdd == "") {
+            throw new NullPointerException("Cannot add null element.");
+        }
+
+        // If array is already full
+        if (size == array.length) {
+            return false;
+        }
+
+        // Shift elements to make space for the new one
+        for (int i = size; i > index; i--) {
+            array[i] = array[i - 1];
+        }
+        // Add new element
+        array[index] = toAdd;
+        size++;
+        return true;
     }
 
     @Override
     public boolean add(E toAdd) throws NullPointerException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        if (toAdd == null || toAdd == "") {
+            throw new NullPointerException("Cannot add null element.");
+        }
+        array[size] = toAdd; // size = index+1
+        return true;
     }
 
     @Override
     public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addAll'");
+        MyIterator<E> iterator = new MyIterator<E>(toAdd);
+        while (iterator.hasNext()) {
+            add(iterator.next().get());
+        }
     }
 
     @Override
     public E get(int index) throws IndexOutOfBoundsException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index out of bounds.");
+        }
+        @SuppressWarnings("unchecked")
+        E element = (E) array[index]; // Cast Object to E
+        return element;
     }
 
     @Override
     public E remove(int index) throws IndexOutOfBoundsException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index out of bounds.");
+        }
+        // Save the removed element for the return
+        E removedElement = get(index);
+
+        // Shift elements after the removed element to the left
+        for (int i = index; i < size - 1; i++) {
+            array[i] = array[i + 1];
+        }
+
+        return removedElement;
     }
 
     @Override
     public E remove(E toRemove) throws NullPointerException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        if (toRemove == null || toRemove == "") {
+            throw new NullPointerException("Cannot remove null element.");
+        }
+        for (int i = 0; i < size; i++) {
+            if (array[i] == toRemove) {
+                return remove(i); // Remove and return the element
+            }
+        }
+        return null; // Element not found
     }
 
     @Override
@@ -66,32 +124,47 @@ public class MyArrayList<E> implements ListADT<E> {
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isEmpty'");
+        return size == 0;
     }
 
     @Override
     public boolean contains(E toFind) throws NullPointerException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'contains'");
+        if (toFind == null || toFind == "") {
+            throw new NullPointerException("Cannot find null element.");
+        }
+        for (int i = 0; i < size; i++) {
+            if (array[i] == toFind) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public E[] toArray(E[] toHold) throws NullPointerException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'toArray'");
+        if (toHold == null) {
+            throw new NullPointerException("Cannot hold null array.");
+        }
+
+        E[] newArray = (E[]) new Object[size];
+        for (int i = 0; i < size; i++) {
+            newArray[i] = (E) array[i];
+        }
+        return newArray;
     }
 
     @Override
     public Object[] toArray() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'toArray'");
+        Object[] newArray = new Object[size];
+        for (int i = 0; i < size; i++) {
+            newArray[i] = array[i];
+        }
+        return newArray;
     }
 
     @Override
     public Utility.MyIterator<E> iterator() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'iterator'");
+        return new SLLIterator();
     }
 
 }
