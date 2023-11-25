@@ -12,103 +12,78 @@ import java.util.EmptyStackException;
  *
  * @author Matt
  */
-public class MyStack<E> implements StackADT<E> {
+public class MyStack<E> implements StackADT {
 
-    private MyArrayList<E> list;
-    private int capacity;
-    private int size;
-
-    public MyStack() {
-        list = new MyArrayList<>();
-        size = 0;
-        capacity = 10;
-    }
-
-    public MyStack(int capacity) {
-        this.capacity = capacity;
-        size = 0;
-        // list = (E[]) (new MyStack<>(capacity));
-        // list = new MyArrayList<>(capacity);
-        // need to implement constructor that takes int
+    @Override
+    public void clear() {
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
-    public void push(E element) {
-        list.add(element);
-        size++;
+    public boolean contains(Object toFind) throws NullPointerException {
+        // TODO Auto-generated method stub
+        return false;
     }
 
     @Override
-    public E pop() {
-        if (isEmpty()) {
-            throw new EmptyStackException();
-        }
-        E remove = list.remove(list.size() - 1);
-        size--;
-        return remove;
-
-        // size--;
-        // return list[size];
-    }
-
-    @Override
-    public E peek() {
-        if (isEmpty()) {
-            throw new EmptyStackException();
-        }
-        return list.get(size() - 1);
-    }
-
-    @Override
-    public int size() {
-        return list.size();
+    public boolean equals(StackADT that) {
+        // TODO Auto-generated method stub
+        return false;
     }
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        // TODO Auto-generated method stub
+        return false;
     }
 
     @Override
-    public void clear() {
-        list.clear();
-        size = 0;
+    public IteratorADT iterator() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Object peek() throws EmptyStackException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Object pop() throws EmptyStackException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void push(Object toAdd) throws NullPointerException {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public int search(Object toFind) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int size() {
+        // TODO Auto-generated method stub
+        return 0;
     }
 
     @Override
     public Object[] toArray() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'toArray'");
+        return null;
     }
 
     @Override
-    public E[] toArray(E[] holder) throws NullPointerException {
+    public Object[] toArray(Object[] holder) throws NullPointerException {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'toArray'");
-    }
-
-    @Override
-    public boolean contains(E toFind) throws NullPointerException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'contains'");
-    }
-
-    @Override
-    public int search(E toFind) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'search'");
-    }
-
-    @Override
-    public boolean equals(StackADT<E> that) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'equals'");
-    }
-
-    @Override
-    public Utility.IteratorADT<E> iterator() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'iterator'");
+        return null;
     }
 
 }
