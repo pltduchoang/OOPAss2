@@ -12,7 +12,7 @@ import java.util.EmptyStackException;
  * @author Sean
  */
 @SuppressWarnings("serial")
-public class MyStack<E> implements StackADT<E> {
+public class MyStack<E> implements StackADT<E>, IteratorADT<E> {
 
     private MyArrayList<E> stack;
 
@@ -79,20 +79,34 @@ public class MyStack<E> implements StackADT<E> {
 
     @Override
     public int search(E toFind) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'search'");
+    	int distance = 0;
+    	for (int i = stack.size() - 1; i >= 0; i--) {
+    		distance++;
+            if (stack.get(i) == toFind) {
+                return distance;
+            }
+        }
+    	return -1;
     }
 
     @Override
-    public Utility.IteratorADT<E> iterator() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'iterator'");
+    public IteratorADT<E> iterator() {
+    	return new MyIterator<>(this.stack);
+    }
+
+    @Override
+    public boolean hasNext() {
+        return iterator().hasNext();
+    }
+
+    @Override
+    public E next() {
+        return iterator().next();
     }
     
     @Override
     public boolean equals(StackADT<E> that) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'equals'");
+        return this.toArray() == that.toArray();
     }
     
     @Override

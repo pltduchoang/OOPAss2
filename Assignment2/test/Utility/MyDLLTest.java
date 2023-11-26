@@ -21,7 +21,7 @@ public class MyDLLTest {
 
     @BeforeEach
     void setUp() {
-        myDLL = new MyDLL<>();
+        myDLL = new MyDLL<>(100);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class MyDLLTest {
 
     @Test
     void testAddAll() {
-        MyDLL<Integer> otherList = new MyDLL<>();
+        MyDLL<Integer> otherList = new MyDLL<>(100);
         otherList.add(5);
         otherList.add(10);
 

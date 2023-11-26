@@ -57,7 +57,11 @@ public class MyStackTest {
      */
     @Test
     public void testPop() {
-        assertEquals("C", stack.pop());
+    	stack.push("A");
+        stack.push("B");
+        stack.push("C");
+    	
+    	assertEquals("C", stack.pop());
         assertEquals("B", stack.pop());
         assertEquals("A", stack.pop());
 

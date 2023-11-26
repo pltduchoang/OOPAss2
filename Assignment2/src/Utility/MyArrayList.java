@@ -75,6 +75,7 @@ public class MyArrayList<E> implements ListADT<E> {
         while (iterator.hasNext()) {
             add(iterator.next());
         }
+        return true;
     }
 
     @Override
@@ -173,8 +174,8 @@ public class MyArrayList<E> implements ListADT<E> {
     }
 
     @Override
-    public Utility.MyIterator<E> iterator() {
-        return new SLLIterator();
+    public MyIterator<E> iterator() {
+        return new MyIterator<E>(this);
     }
 
 }

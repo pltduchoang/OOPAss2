@@ -10,13 +10,23 @@ public class MyIterator<E> implements IteratorADT<E> {
         this.elements = elements;
         this.currentPosition = 0;
     }
+    
+    public MyIterator(MyArrayList<E> myArrayList) {
+        this.elements = (E[]) myArrayList.toArray();
+        this.currentPosition = 0;
+    }
 
     public MyIterator(MyDLL<E> myDLL) {
         this.elements = (E[]) myDLL.toArray();
         this.currentPosition = 0;
     }
 
-    @Override
+    public MyIterator(ListADT<? extends E> toAdd) {
+    	this.elements = (E[]) toAdd.toArray();
+        this.currentPosition = 0;
+	}
+
+	@Override
     public boolean hasNext() {
         return currentPosition < elements.length;
     }
