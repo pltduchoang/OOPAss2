@@ -9,8 +9,9 @@ import java.util.EmptyStackException;
 
 /**
  *
- * @author Matt
+ * @author Sean
  */
+@SuppressWarnings("serial")
 public class MyStack<E> implements StackADT<E> {
 
     private MyArrayList<E> stack;
@@ -77,9 +78,9 @@ public class MyStack<E> implements StackADT<E> {
     }
 
     @Override
-    public int size() {
+    public int search(E toFind) {
         // TODO Auto-generated method stub
-        return 0;
+        throw new UnsupportedOperationException("Unimplemented method 'search'");
     }
 
     @Override
@@ -87,11 +88,11 @@ public class MyStack<E> implements StackADT<E> {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'iterator'");
     }
-
+    
     @Override
-    public Object[] toArray() {
+    public boolean equals(StackADT<E> that) {
         // TODO Auto-generated method stub
-        return null;
+        throw new UnsupportedOperationException("Unimplemented method 'equals'");
     }
     
     @Override
