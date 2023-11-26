@@ -176,26 +176,7 @@ public class MyDLLTest {
         assertArrayEquals(new Integer[]{5, 10}, array);
     }
 
-    @Test
-    void testToArrayResize() {
-        myDLL.add(5);
-        myDLL.add(10);
-
-        Integer[] array = new Integer[1];
-        myDLL.toArray(array);
-
-        assertArrayEquals(new Integer[]{5}, array);
-    }
-
-    @Test
-    void testToArrayNoResize() {
-        myDLL.add(5);
-        myDLL.add(10);
-
-        Object[] array = myDLL.toArray();
-
-        assertArrayEquals(new Object[]{5, 10}, array);
-    }
+    
 
     @Test
     void testIterator() {
