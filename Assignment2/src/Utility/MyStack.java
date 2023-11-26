@@ -77,9 +77,9 @@ public class MyStack<E> implements StackADT<E> {
     }
 
     @Override
-    public int search(E toFind) {
+    public int size() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'search'");
+        return 0;
     }
 
     @Override
@@ -89,9 +89,9 @@ public class MyStack<E> implements StackADT<E> {
     }
 
     @Override
-    public boolean equals(StackADT<E> that) {
+    public Object[] toArray() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'equals'");
+        return null;
     }
     
     @Override
