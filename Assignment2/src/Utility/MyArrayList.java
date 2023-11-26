@@ -21,7 +21,7 @@ public class MyArrayList<E> implements ListADT<E> {
 
     public MyArrayList(int capacity) {
         array = new Object[capacity];
-        this.size = 0;
+        size = 0;
 
     }
 
@@ -32,7 +32,6 @@ public class MyArrayList<E> implements ListADT<E> {
 
     @Override
     public void clear() {
-        array = new Object[defaultCapacity];
         size = 0;
     }
 
@@ -66,6 +65,7 @@ public class MyArrayList<E> implements ListADT<E> {
             throw new NullPointerException("Cannot add null element.");
         }
         array[size] = toAdd; // size = index+1
+        size++;
         return true;
     }
 
@@ -99,6 +99,7 @@ public class MyArrayList<E> implements ListADT<E> {
         for (int i = index; i < size - 1; i++) {
             array[i] = array[i + 1];
         }
+        size--;
 
         return removedElement;
     }
@@ -148,7 +149,8 @@ public class MyArrayList<E> implements ListADT<E> {
         return false;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public E[] toArray(E[] toHold) throws NullPointerException {
         if (toHold == null) {
             throw new NullPointerException("Cannot hold null array.");

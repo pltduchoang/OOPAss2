@@ -5,7 +5,6 @@
 package Utility;
 
 import java.util.EmptyStackException;
-//import Utility.MyArrayList;
 
 
 /**
@@ -14,28 +13,24 @@ import java.util.EmptyStackException;
  */
 public class MyStack<E> implements StackADT<E> {
 
-    private MyArrayList<E> list;
-    private int capacity;
-    private int size;
+    private MyArrayList<E> stack;
 
     public MyStack() {
-        list = new MyArrayList<>();
-        size = 0;
-        capacity = 10;
+    	stack = new MyArrayList<>();
     }
 
     public MyStack(int capacity) {
-        this.capacity = capacity;
-        size = 0;
-        // list = (E[]) (new MyStack<>(capacity));
-        // list = new MyArrayList<>(capacity);
-        // need to implement constructor that takes int
+        if (capacity <= 0) {
+        	stack = new MyArrayList<>();
+        }
+        else {
+        	stack = new MyArrayList<>(capacity);
+        }
     }
 
     @Override
     public void push(E element) {
-        list.add(element);
-        size++;
+    	stack.add(element);
     }
 
     @Override
@@ -43,12 +38,8 @@ public class MyStack<E> implements StackADT<E> {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        E remove = list.remove(list.size() - 1);
-        size--;
-        return remove;
-
-        // size--;
-        // return list[size];
+        E popItem = stack.remove(size() - 1);
+        return popItem;
     }
 
     @Override
@@ -56,41 +47,33 @@ public class MyStack<E> implements StackADT<E> {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        return list.get(size() - 1);
-    }
-
-    @Override
-    public int size() {
-        return list.size();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return size == 0;
+        E peekItem = stack.get(size() - 1);
+        return peekItem;
     }
 
     @Override
     public void clear() {
-        list.clear();
-        size = 0;
+    	stack.clear();
+    }
+    
+    @Override
+    public boolean isEmpty() {
+        return stack.size() == 0;
     }
 
     @Override
     public Object[] toArray() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'toArray'");
+        return stack.toArray();
     }
 
     @Override
-    public E[] toArray(E[] holder) throws NullPointerException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'toArray'");
+    public E[] toArray(E[] toHold) throws NullPointerException {
+        return stack.toArray(toHold);
     }
 
     @Override
     public boolean contains(E toFind) throws NullPointerException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'contains'");
+        return stack.contains(toFind);
     }
 
     @Override
@@ -100,15 +83,19 @@ public class MyStack<E> implements StackADT<E> {
     }
 
     @Override
-    public boolean equals(StackADT<E> that) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'equals'");
-    }
-
-    @Override
     public Utility.IteratorADT<E> iterator() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'iterator'");
     }
 
+    @Override
+    public boolean equals(StackADT<E> that) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'equals'");
+    }
+    
+    @Override
+    public int size() {
+        return stack.size();
+    }
 }
