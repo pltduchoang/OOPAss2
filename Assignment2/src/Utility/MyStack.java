@@ -106,7 +106,18 @@ public class MyStack<E> implements StackADT<E>, IteratorADT<E> {
     
     @Override
     public boolean equals(StackADT<E> that) {
-        return this.toArray() == that.toArray();
+    	IteratorADT<E> thisIterator = this.iterator();
+        IteratorADT<E> thatIterator = that.iterator();
+
+        while (thisIterator.hasNext()) {
+            E thisElement = thisIterator.next();
+            E thatElement = thatIterator.next();
+
+            if (!thisElement.equals(thatElement)) {
+                return false;
+            }
+        }
+        return true;
     }
     
     @Override
