@@ -12,33 +12,52 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- *
+ * JUnit test class for the {@link MyStack} implementation.
+ * 
  * @author emagt Sean
  */
 public class MyStackTest {
     
     private MyStack<String> stack;
     
+    /**
+     * Default constructor for the test class.
+     */
     public MyStackTest() {
     }
     
+    /**
+     * Executed once before all test methods. Setup class-level resources.
+     */
     @BeforeAll
     public static void setUpClass() {
     }
     
+    /**
+     * Executed once after all test methods. Release class-level resources.
+     */
     @AfterAll
     public static void tearDownClass() {
     }
     
+    /**
+     * Executed before each test method. Setup test-level resources.
+     */
     @BeforeEach
     public void setUp() {
         stack = new MyStack<>();
     }
     
+    /**
+     * Executed after each test method. Release test-level resources.
+     */
     @AfterEach
     public void tearDown() {
     }
 
+    /**
+     * Test the {@link MyStack#push(Object)} method.
+     */
     @Test
     public void testPush() {
         stack.push("A");
@@ -49,6 +68,9 @@ public class MyStackTest {
         assertFalse(stack.isEmpty());
     }
 
+    /**
+     * Test the {@link MyStack#pop()} method.
+     */
     @Test
     public void testPop() {
     	stack.push("A");
@@ -62,6 +84,9 @@ public class MyStackTest {
         assertTrue(stack.isEmpty());
     }
 
+    /**
+     * Test the {@link MyStack#peek()} method.
+     */
     @Test
     public void testPeek() {
         stack.push("X");
@@ -72,6 +97,9 @@ public class MyStackTest {
         assertFalse(stack.isEmpty());
     }
 
+    /**
+     * Test the {@link MyStack#clear()} method.
+     */
     @Test
     public void testClear() {
        stack.push("Apple");
@@ -85,6 +113,9 @@ public class MyStackTest {
         assertEquals(0, stack.size());
     }
 
+    /**
+     * Test the {@link MyStack#isEmpty()} method.
+     */
     @Test
     public void testIsEmpty() {
         stack.push("One");
@@ -95,6 +126,9 @@ public class MyStackTest {
         assertTrue(stack.isEmpty());
     }
     
+    /**
+     * Test the {@link MyStack#toArray(Object)} method.
+     */
     @Test
     public void testToArray() {
     	stack.push("X");
@@ -105,6 +139,9 @@ public class MyStackTest {
         assertArrayEquals(new String[]{"X", "Y"}, stack.toArray(array));
     }
     
+    /**
+     * Test the {@link MyStack#contains(Object)} method.
+     */
     @Test
     public void testContains() {
     	stack.push("X");
@@ -114,6 +151,9 @@ public class MyStackTest {
         assertFalse(stack.contains("Z"));
     }
     
+    /**
+     * Test the {@link MyStack#search(Object)} method.
+     */
     @Test
 	public void testSearch() {
     	stack.push("A");
@@ -127,6 +167,9 @@ public class MyStackTest {
         assertEquals(-1,stack.search("Z"));
 	}
 	
+    /**
+     * Test the {@link MyStack#iterator()} method.
+     */
     @Test
 	public void testIterator() {
     	stack.push("A");
@@ -143,6 +186,9 @@ public class MyStackTest {
         assertFalse(iterator.hasNext());
 	}
 	
+    /**
+     * Test the {@link MyStack#equals(StackADT)} method.
+     */
     @Test
 	public void testEquals() {
     	stack.push("A");
@@ -163,6 +209,9 @@ public class MyStackTest {
         assertFalse(stack.equals(unequalStack));
 	}
 
+    /**
+     * Test the {@link MyStack#size()} method.
+     */
     @Test
     public void testSize() {
         assertEquals(0, stack.size());
