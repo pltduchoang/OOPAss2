@@ -157,11 +157,14 @@ public class MyArrayList<E> implements ListADT<E> {
             throw new NullPointerException("Cannot hold null array.");
         }
 
-        E[] newArray = (E[]) new Object[size];
-        for (int i = 0; i < size; i++) {
-            newArray[i] = (E) array[i];
+        // if array isnt big enough, make a new one
+        if (toHold.length < size) {
+            toHold = (E[]) new Object[size];
         }
-        return newArray;
+        for (int i = 0; i < size; i++) {
+            toHold[i] = (E) array[i];
+        }
+        return toHold;
     }
 
     @Override
