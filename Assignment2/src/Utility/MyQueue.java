@@ -9,8 +9,7 @@ import java.util.NoSuchElementException;
 /**
  *
  * @author pltdu
- */
-/**
+ *
  * This class represents a generic queue implementation using an underlying
  * ArrayList.
  *
@@ -26,7 +25,7 @@ public class MyQueue<E> implements QueueADT<E>, IteratorADT<E> {
 
 
     /**
-     * Constructs an empty queue with default capacity.
+     * Constructs an empty queue with predetermined capacity.
      *
      * @param capacity
      */
@@ -35,11 +34,9 @@ public class MyQueue<E> implements QueueADT<E>, IteratorADT<E> {
     }
 
 
-    /**
-     * Constructs an empty queue with the specified initial capacity.
-     *
-     * @param capacity The initial capacity of the queue.
-     */
+   /**
+    * add element to the end of the queue
+    */
 
     @Override
     public void enqueue(E element) {
@@ -201,9 +198,7 @@ public class MyQueue<E> implements QueueADT<E>, IteratorADT<E> {
 
 
     /**
-     * Returns an iterator over the elements in this queue in proper sequence.
-     *
-     * @return an iterator over the elements in this queue in proper sequence.
+     * return true if the current element has a value
      */
     @Override
     public boolean hasNext() {
@@ -212,9 +207,9 @@ public class MyQueue<E> implements QueueADT<E>, IteratorADT<E> {
 
 
     /**
-     * Returns the next element in the iteration.
+     * Returns the current in the iteration. And set the current to the next
      *
-     * @return the next element in the iteration.
+     * @return the current in the iteration.
      * @throws NoSuchElementException if the iteration has no more elements.
      */
     @Override

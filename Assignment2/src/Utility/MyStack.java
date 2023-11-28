@@ -10,8 +10,7 @@ import java.util.EmptyStackException;
 /**
  *
  * @author Sean
- */
-/**
+ *
  * This class represents a generic stack implementation using an underlying ArrayList.
  *
  * @param <E> The type of elements stored in the stack.
@@ -179,6 +178,7 @@ public class MyStack<E> implements StackADT<E>, IteratorADT<E> {
     	return -1;
     }
 
+
     /**
      * Returns an iterator over the elements in this stack in proper sequence.
      *
@@ -191,11 +191,7 @@ public class MyStack<E> implements StackADT<E>, IteratorADT<E> {
 
 
     /**
-     * Used to compare two Stack ADT's. To be equal two stacks must contain
-     * equal items appearing in the same order.
-     *
-     * @param that The Stack ADT to be compared to this stack.
-     * @return <code>true</code> if the stacks are equal.
+     * Returns <code>true</code> if the iteration has more elements.
      */
     @Override
     public boolean hasNext() {
