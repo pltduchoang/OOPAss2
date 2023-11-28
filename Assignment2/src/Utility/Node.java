@@ -7,6 +7,7 @@ package Utility;
 /**
  *
  * @author pltdu
+ * 
  */
 public class Node<E> {
     private E data;
